@@ -8,16 +8,13 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-@Entity
+@Entity(name = "post")
 @Table(name = "post")
 @EntityListeners(AuditingEntityListener.class)
 public class Post {
@@ -32,14 +29,12 @@ public class Post {
 	@Column(name ="content")
 	private String content;
 	
-    @Column(name ="createAt", nullable = false, updatable = false)
+    @Column(name ="creation")
 	@Temporal(TemporalType.TIMESTAMP)
-	@CreatedDate
-	private Date createdAt;
+	private Date creation;
     
-    @ManyToOne
-    @JoinColumn(name = "id_user", nullable = false, updatable = false)
-    private int idUser;
+	@Column(name ="user_id")
+	private int userId;
 
 	public int getIdPost() {
 		return idPost;
@@ -65,21 +60,25 @@ public class Post {
 		this.content = content;
 	}
 
-	public Date getCreatedAt() {
-		return createdAt;
+	public Date getCreation() {
+		return creation;
 	}
 
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
+	public void setCreation(Date creation) {
+		this.creation = creation;
 	}
 
-	public int getIdUser() {
-		return idUser;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
+
+
+
+
     
     
 

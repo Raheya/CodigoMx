@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 
-@Entity
+@Entity(name = "user")
 @Table(name = "user")
 @EntityListeners(AuditingEntityListener.class)
 public class User {
